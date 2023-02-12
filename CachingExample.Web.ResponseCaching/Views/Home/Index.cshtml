@@ -1,0 +1,35 @@
+﻿@using CachingExample.ApplicationCore.Models
+@model CachingExample.Web.Controllers.HomeController.WeatherForecastResponse
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h4>Response time: @Model.DurationMs ms</h4>
+<div>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Temperature (F)</th>
+            <th>Summary</th>
+        </tr>
+        @{ RenderTableData(); }
+    </table>
+</div>
+
+@{
+    void RenderTableData()
+    {
+        var orderedResults = Model.Results?.OrderByDescending(x => x.DateTime)
+                             ?? Enumerable.Empty<WeatherForecast>();
+
+        foreach (var forecast in orderedResults)
+        {
+            <tr>
+                <td>@forecast.DateTime.ToString("yyyy-MM-dd")</td>
+                <td>@forecast.Temperature</td>
+                <td>@forecast.Summary</td>
+            </tr>
+        }
+    }
+}
