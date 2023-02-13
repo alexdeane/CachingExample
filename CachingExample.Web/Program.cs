@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddApplicationDependencies(builder.Configuration);
+builder.Services.AddResponseCaching();
 
 var app = builder.Build();
 
@@ -20,6 +21,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseResponseCaching();
 
 app.UseAuthorization();
 

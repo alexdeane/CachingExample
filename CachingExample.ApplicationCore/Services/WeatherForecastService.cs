@@ -13,12 +13,12 @@ public interface IWeatherForecastService
 public class WeatherForecastService : IWeatherForecastService
 {
     private readonly IWeatherForecastRepository _repository;
-    private readonly ICachingService<IEnumerable<WeatherForecast>> _cachingService;
+    private readonly ICachingService _cachingService;
 
     private const string CacheKey = "cacheKey";
 
     public WeatherForecastService(IWeatherForecastRepository repository,
-        ICachingService<IEnumerable<WeatherForecast>> cachingService)
+        ICachingService cachingService)
     {
         _repository = repository;
         _cachingService = cachingService;
@@ -27,7 +27,7 @@ public class WeatherForecastService : IWeatherForecastService
     public async Task<IEnumerable<WeatherForecast>> GetForecasts()
     {
         // Check if something is in the cache
-        var cachedResult = await _cachingService.GetObject(CacheKey);
+        var cachedResult = await _cachingService.GetObject<IEnumerable<WeatherForecast>>(CacheKey);
 
         // If this is not null, it means we got a cache hit
         if (cachedResult is not null)

@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CachingExample.Web.ResponseCaching", "CachingExample.Web.ResponseCaching\CachingExample.Web.ResponseCaching.csproj", "{8B9FD79C-3632-4556-94FF-FECBDF247F95}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CachingExample.Web", "CachingExample.Web\CachingExample.Web.csproj", "{8B9FD79C-3632-4556-94FF-FECBDF247F95}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CachingExample.ApplicationCore", "CachingExample.ApplicationCore\CachingExample.ApplicationCore.csproj", "{73F52DC5-BE21-4E16-823C-1D3390FFBDF5}"
 EndProject

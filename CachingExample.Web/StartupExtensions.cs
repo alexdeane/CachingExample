@@ -12,7 +12,7 @@ public static class StartupExtensions
     {
         services.AddScoped<IWeatherForecastRepository, WeatherForecastRepository>();
         services.AddScoped<IWeatherForecastService, WeatherForecastService>();
-        services.AddScoped(typeof(ICachingService<>), typeof(CachingService<>));
+        services.AddScoped<ICachingService, CachingService>();
         services.AddDistributedMemoryCache();
 
         services.AddOptions<CacheOptions>()
