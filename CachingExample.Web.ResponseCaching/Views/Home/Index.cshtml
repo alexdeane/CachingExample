@@ -1,11 +1,16 @@
 ﻿@using CachingExample.ApplicationCore.Models
-@model CachingExample.Web.Controllers.HomeController.WeatherForecastResponse
+@using CachingExample.Web.Filters
+@model IEnumerable<WeatherForecast>
 
 @{
     ViewData["Title"] = "Home Page";
 }
 
-<h4>Response time: @Model.DurationMs ms</h4>
+@if (Context.Response.Headers.TryGetValue(RequestDurationFilter.RequestDurationHeader, out var duration))
+{
+    <h4>Response time: @duration ms</h4>
+}
+
 <div>
     <table>
         <tr>
@@ -20,8 +25,7 @@
 @{
     void RenderTableData()
     {
-        var orderedResults = Model.Results?.OrderByDescending(x => x.DateTime)
-                             ?? Enumerable.Empty<WeatherForecast>();
+        var orderedResults = Model.OrderByDescending(x => x.DateTime);
 
         foreach (var forecast in orderedResults)
         {

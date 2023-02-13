@@ -1,6 +1,6 @@
 ﻿using CachingExample.ApplicationCore.Models;
 
-namespace CachingExample.ApplicationCore;
+namespace CachingExample.ApplicationCore.Services;
 
 /// <summary>
 /// Returns weather data

@@ -3,7 +3,7 @@
 namespace CachingExample.ApplicationCore.Services;
 
 /// <summary>
-/// Options POCO for configuring the cacghe
+/// Options POCO for configuring the cache
 /// </summary>
 public class CacheOptions
 {

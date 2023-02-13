@@ -19,9 +19,6 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-// Add the response caching middleware
-app.UseResponseCaching();
-
 app.UseRouting();
 
 app.UseAuthorization();
