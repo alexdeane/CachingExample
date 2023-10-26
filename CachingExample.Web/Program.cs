@@ -1,11 +1,25 @@
+using CachingExample.ApplicationCore.Services;
 using CachingExample.Web;
+using CachingExample.Web.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddApplicationDependencies(builder.Configuration);
-builder.Services.AddResponseCaching();
+
+// Adds output caching middleware
+builder.Services.AddOutputCache(options =>
+{
+    // Adds a caching policy for use by the Forecasts action
+    options.AddPolicy(nameof(ApiController.Forecasts), b =>
+    {
+        var cacheOptions = builder.Configuration.GetSection(nameof(CacheOptions))
+            .Get<CacheOptions>();
+
+        b.Cache().Expire(cacheOptions.ExpiryTime);
+    });
+});
 
 var app = builder.Build();
 
@@ -13,7 +27,6 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -22,7 +35,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseResponseCaching();
+// Adds the output caching middleware to the request pipeline
+app.UseOutputCache();
 
 app.UseAuthorization();
 

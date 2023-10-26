@@ -2,6 +2,7 @@
 using CachingExample.ApplicationCore.Services;
 using CachingExample.Web.Filters;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OutputCaching;
 
 namespace CachingExample.Web.Controllers;
 
@@ -21,7 +22,7 @@ public class ApiController : ControllerBase
     /// [GET] /api/forecasts/
     /// </summary>
     [TypeFilter(typeof(RequestDurationFilter))]
-    [ResponseCache(Duration = 20, NoStore = false)] // This single line does almost everything which the CachingService does
+    [OutputCache(PolicyName = nameof(Forecasts))] // This single line does almost everything which the CachingService does
     public Task<IEnumerable<WeatherForecast>> Forecasts()
         => _weatherForecastRepository.GetForecasts();
 }

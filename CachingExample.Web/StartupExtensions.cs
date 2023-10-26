@@ -1,5 +1,4 @@
-﻿using CachingExample.ApplicationCore;
-using CachingExample.ApplicationCore.Services;
+﻿using CachingExample.ApplicationCore.Services;
 
 namespace CachingExample.Web;
 

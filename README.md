@@ -10,4 +10,4 @@ Example application with two different kinds of caching on two different endpoin
       for `IDistributedCache`) to cache results from the "repository"
 
 * The [ApiController](./CachingExample.Web/Controllers/ApiController.cs) returns JSON formatted weather data. It
-  uses [ASP.Net Core Response Caching](https://learn.microsoft.com/en-us/aspnet/core/performance/caching/response?view=aspnetcore-7.0) and does not use the aforementioned `CachingService` at all.
+  uses [ASP.Net Core Output Caching](https://learn.microsoft.com/en-us/aspnet/core/performance/caching/output?view=aspnetcore-7.0) and does not use the aforementioned `CachingService` at all.

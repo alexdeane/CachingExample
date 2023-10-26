@@ -13,7 +13,7 @@ public interface IWeatherForecastRepository
 public class WeatherForecastRepository : IWeatherForecastRepository
 {
     private const int Delay = 5000;
-    private const int Records = 1000;
+    private const int NumRecords = 1000;
 
     /// <summary>
     /// Simulates a long-running database query or API call
@@ -24,7 +24,7 @@ public class WeatherForecastRepository : IWeatherForecastRepository
 
         await Task.Delay(Delay);
 
-        return Enumerable.Range(0, Records)
+        return Enumerable.Range(0, NumRecords)
             .Select(i =>
             {
                 var temperature = random.Next(30, 90);
